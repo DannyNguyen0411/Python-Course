@@ -21,13 +21,17 @@ pokemon_2.set_second_type("poison")
 pokemon_3 = Pokemon("003", "Venusaur", "grass")
 pokemon_3.set_second_type("poison")
 
+pokemon_4 = Pokemon("004", "Charmander", "fire")
+
 # Calling pokemon
 bulbasaur = pokemon_1.id, pokemon_1.name, pokemon_1.type_one, pokemon_1.type_two
 ivysaur = pokemon_2.id, pokemon_2.name, pokemon_2.type_one, pokemon_2.type_two
 venusaur = pokemon_3.id, pokemon_3.name, pokemon_3.type_one, pokemon_3.type_two
+charmander = pokemon_4.id, pokemon_4.name, pokemon_4.type_one
+
 
 
 # Add pokemon in national pokedex
-pokedex = f"{bulbasaur}\n{ivysaur}\n{venusaur}\n"
+pokedex = f"{bulbasaur}\n{ivysaur}\n{venusaur}\n{charmander}\n"
 
 print(pokedex)
