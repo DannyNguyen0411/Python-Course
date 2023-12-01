@@ -29,6 +29,13 @@ class Snake:
             self.segments[seg_num].goto(new_x, new_y)
         self.head.forward(MOVE_DISTANCE)
 
+    def fat_the_snake(self):
+        new_segment = Turtle(shape="square")
+        new_segment.color("white")
+        new_segment.penup()
+        self.segments.append(new_segment)
+
+
     def up(self):
         if self.head.heading() != DOWN:
             # # solution 1
