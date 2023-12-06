@@ -67,4 +67,6 @@ while game_is_on:
             sound_player.play_sound(sound_file)
             scoreboard.game_over()
 
+    
+
 screen.exitonclick()
