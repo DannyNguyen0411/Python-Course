@@ -20,10 +20,10 @@ class Paddle(Turtle):
 
     def go_up(self):
         y = self.ycor()
-        y += 20
+        y += 30
         self.sety(y)
 
     def go_down(self):
         y = self.ycor()
-        y -= 20
+        y -= 30
         self.sety(y)
