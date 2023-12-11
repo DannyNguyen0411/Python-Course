@@ -20,5 +20,15 @@ class Player(Turtle):
     def next_level(self):
         self.goto(STARTING_POSITION)
 
+    def easter_egg(self):
+        self.shapesize(50)
+        self.shapesize(1)
+
+
+    def speed_off(self):
+        MOVE_DISTANCE = 30
+        self.forward(MOVE_DISTANCE)
+
+
 
 
