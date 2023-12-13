@@ -54,19 +54,14 @@ while game_is_on:
 
     #     Detect collision with wall
     if snake.head.xcor() > 285 or snake.head.xcor() < -285 or snake.head.ycor() > 285 or snake.head.ycor() < -285:
-        game_is_on = False
-        scoreboard.game_over()
-        sound_file = "sound/helicopter.mp3"
-        sound_player.play_sound(sound_file)
+        scoreboard.reset()
+        snake.reset()
+
 
     #       Detect collision with tail
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 10:
-            game_is_on = False
-            sound_file = "sound/helicopter.mp3"
-            sound_player.play_sound(sound_file)
-            scoreboard.game_over()
-
-    
+            scoreboard.reset()
+            snake.reset()
 
 screen.exitonclick()
