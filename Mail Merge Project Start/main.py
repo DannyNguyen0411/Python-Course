@@ -14,9 +14,10 @@ with open("input/Names/invited_names.txt") as name:
         # Replace the [name] placeholder with the actual name.
         letter = invitation.replace(PLACEHOLDER, stripped_name)
         print(f"{letter}")
+        # #Save the letters in the folder "ReadyToSend".
         with open(f"Output/ReadyToSend/letter_for_{stripped_name}.txt", mode="w") as completed_letter:
             completed_letter.write(letter)
-# #Save the letters in the folder "ReadyToSend".
+
 
 
 # # 👇Answer
