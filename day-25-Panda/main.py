@@ -77,9 +77,11 @@ black_squirrels_count = len(data_squirrel[data_squirrel["Primary Fur Color"] == 
 cinnamon_squirrels_count = len(data_squirrel[data_squirrel["Primary Fur Color"] == "Cinnamon"])
 
 data_dict_squirrels = {
-    "Fur Color" : ["Gray", "Black", "Cinnamon"],
-    "Count" : [grey_squirrels_count, black_squirrels_count, cinnamon_squirrels_count]
+    "Fur Color": ["Gray", "Black", "Cinnamon"],
+    "Count": [grey_squirrels_count, black_squirrels_count, cinnamon_squirrels_count]
 }
+
+print(data_dict_squirrels)
 
 data_info_squirrels = pandas.DataFrame(data_dict_squirrels)
 data_info_squirrels.to_csv("squirrel_count.csv")
