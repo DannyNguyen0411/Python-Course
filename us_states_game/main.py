@@ -24,23 +24,29 @@ y_cor_list = []
 game_is_on = True
 correct_guessed = 0
 
-while game_is_on and correct_guessed != 5:
-    answer_state = screen.textinput(title=f"{correct_guessed}/50 States Correct", prompt="What's another state's name?")
+while game_is_on and correct_guessed != 50:
+    answer_state = screen.textinput(title=f"{correct_guessed}/50 States Correct", prompt="What's another state's name?").title()
     print(answer_state)
-    for guess in states_data:
-        if answer_state.title() and guess.title() != 3:
+    if answer_state == "Exit":
+        break
+    else:
+        if answer_state in states_data:
             data_cor = data[data.state == f"{answer_state.title()}"]
-
-            if not data_cor.empty:
+            if answer_state not in guess_states_list:
                 guess_states_list.append(answer_state.title())
-                x_cor_list.append(data_cor.x.values[0])
-                y_cor_list.append(data_cor.y.values[0])
+                x_cor_list.append(data_cor.x.item())
+                y_cor_list.append(data_cor.y.item())
                 state_board.write_state(x_cor_list[-1], y_cor_list[-1], guess_states_list[-1])
+                correct_guessed += 1
                 print(guess_states_list)
                 print(x_cor_list)
                 print(y_cor_list)
-                correct_guessed += 1
-        else:
-            print("Invalid state name. Please try again.")
+            elif answer_state in guess_states_list:
+                print("States is already guessed!")
+            else:
+                print("Invalid state name. Please try again.")
 
+print(f"You guessed {correct_guessed} out of 50")
+
+#     states to learn.csv
 
