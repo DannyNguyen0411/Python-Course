@@ -17,6 +17,7 @@ y_cor_data = data.y.to_list()
 # print(f"{states_data}\n{x_cor_data}\n{y_cor_data}")
 
 guess_states_list = []
+missing_states_list = []
 x_cor_list = []
 y_cor_list = []
 
@@ -28,6 +29,10 @@ while game_is_on and correct_guessed != 50:
     answer_state = screen.textinput(title=f"{correct_guessed}/50 States Correct", prompt="What's another state's name?").title()
     print(answer_state)
     if answer_state == "Exit":
+        for state in states_data:
+            if state not in guess_states_list:
+                missing_states_list.append(state)
+        print(missing_states_list)
         break
     else:
         if answer_state in states_data:
@@ -47,6 +52,18 @@ while game_is_on and correct_guessed != 50:
                 print("Invalid state name. Please try again.")
 
 print(f"You guessed {correct_guessed} out of 50")
+# missing_states_list = states_data - guess_states_list
+
+# # Other method to solve it
+# missing_states_list = list(set(states_data) - set(guess_states_list))
 
 #     states to learn.csv
+data_dict_states = {
+    "Missing States": missing_states_list,
+}
+
+data_info_states = pandas.DataFrame(data_dict_states)
+data_info_states.to_csv("missing_states.csv")
+
+print(data_dict_states)
 
