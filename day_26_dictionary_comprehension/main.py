@@ -10,3 +10,6 @@ print(students_scores)
 passed_students = {student: score for (student, score) in students_scores.items() if score > 60}
 print(f"Passed Students: {passed_students}")
 
+failed_students = {student: score for (student, score) in students_scores.items() if score < 60}
+print(f"Failures: {failed_students}")
+
