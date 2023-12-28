@@ -29,10 +29,8 @@ while game_is_on and correct_guessed != 50:
     answer_state = screen.textinput(title=f"{correct_guessed}/50 States Correct", prompt="What's another state's name?").title()
     print(answer_state)
     if answer_state == "Exit":
-        for state in states_data:
-            if state not in guess_states_list:
-                missing_states_list.append(state)
-        print(missing_states_list)
+        missing_states = [missing_states_list.append(state) for state in states_data if state not in guess_states_list]
+        print(missing_states)
         break
     else:
         if answer_state in states_data:
