@@ -30,7 +30,6 @@ else:
 finally:
     raise TypeError("This is an error that I made up")
 
-
 height = float(input("Height: "))
 weight = int(input("Weight: "))
 
