@@ -70,22 +70,25 @@ def save():
             password_entry.delete(0, END)
 
 
-
-# ---------------------------- Search Website ------------------------------- #
+# ---------------------------- Find Password ------------------------------- #
 def find_password():
     website = website_entry.get()
-    email = email_entry.get()
-    password = password_entry.get()
+    found = False
 
-
-    with open("data.json", mode="r") as data_file:
-        data = json.load(data_file)
-        for item in data:
-            print(f"{item}")
-        if website == item:
-            messagebox.showinfo(title=website, message=f"The email: {item}\nThe password: {item}")
-        # else:
-        #     messagebox.showinfo(title="No details found", message="No details for the website exists")
+    try:
+        with open("data.json", mode="r") as data_file:
+            data = json.load(data_file)
+            print(data)
+            for item, sub_item in data.items():
+                if website == item:
+                    messagebox.showinfo(title=website,
+                                        message=f"The email: {sub_item["email"]}\nThe password: {sub_item["password"]}")
+                    found = True
+            if not found:
+                messagebox.showinfo(title="No website found", message=f"No details for {website} exist.")
+                # found = False
+    except FileNotFoundError:
+        messagebox.showinfo("Error", "No data found!\nFile is not existed yet.")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
