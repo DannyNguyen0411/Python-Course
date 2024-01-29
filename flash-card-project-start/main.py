@@ -10,7 +10,26 @@ TIMER = None
 # --------------------------Read data-------------------------------------
 data = pandas.read_csv("data/french_words.csv")
 to_learn = data.to_dict(orient="records")
+print(to_learn)
+
+french_words = []
+english_words = []
+language_words = []
+
+for key in to_learn:
+    french_words.append(key["French"])
+    english_words.append(key["English"])
+print(french_words, english_words)
 current_card = {}
+
+# US map to see how to convert to "to_csv"
+
+data_dict_words_now = {
+    "French": french_words,
+    "English": english_words,
+}
+
+data_list_words_now = [f"{french_words}+{english_words}\n"]
 
 
 # --------------------------The function-------------------------------------
@@ -23,6 +42,10 @@ def next_card():
     canvas.itemconfig(card_background, image=front_card_img)
     flip_timer = window.after(3000, func=flip_card)
 
+    # data_dictator = data_list_words_now.remove("partie")
+    data_info_words = pandas.DataFrame(data_list_words_now)
+    data_info_words.to_csv("data/words_to_learn.csv", index= False)
+
 
 def flip_card():
     canvas.itemconfig(title, text="English", fill="white", font=FONT_ITALIC)
@@ -30,12 +53,12 @@ def flip_card():
     canvas.itemconfig(card_background, image=back_card_img)
 
 
-# def wrong_fun():
-#     current_card = random.choice(to_learn)
-#     current_word = current_card["English"]
-#     canvas.itemconfig(title, text="English", font=FONT_ITALIC)
-#     canvas.itemconfig(text, text=current_word, font=FONT_BOLD)
-#     canvas.itemconfig(front_card, image=back_card_img)
+def wrong_card():
+    canvas.itemconfig(title, text="English", font=FONT_ITALIC)
+    canvas.itemconfig(text, text=current_card["French"], font=FONT_BOLD)
+    canvas.itemconfig(card_background, image=back_card_img)
+    data_info_words = pandas.DataFrame(data_dict_words_now)
+    data_info_words.to_csv("data/words_to_learn.csv")
 
 
 # --------------------------UI Setup-------------------------------------
@@ -61,7 +84,7 @@ right_img = PhotoImage(file="images/right.png")
 wrong_img = PhotoImage(file="images/wrong.png")
 
 right_button = Button(image=right_img, highlightthickness=0, command=next_card)
-wrong_button = Button(image=wrong_img, highlightthickness=0, command=next_card)
+wrong_button = Button(image=wrong_img, highlightthickness=0, command=wrong_card)
 right_button.grid(column=1, row=1)
 wrong_button.grid(column=0, row=1)
 
