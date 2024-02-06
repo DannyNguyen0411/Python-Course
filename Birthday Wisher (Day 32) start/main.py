@@ -2,12 +2,12 @@ import smtplib
 import datetime as dt
 from random import choice
 
-my_email = "toadenstartoad@gmail.com"
-password = "uhijbidvecdjplgc"
-# my_email = "dda.nguyen1@gmail.com"
-# password = "skscuffqchkjkhxb"
+MY_EMAIL = "toadenstartoad@gmail.com"
+MY_PASSWORD = "uhijbidvecdjplgc"
 
 # --------------------------- Setup Mail ------------------------------------
+
+# Creating a list of random quotes
 with open(file='quotes.txt') as data:
     list_of_quotes = data.readlines()
     quote_of_today = choice(list_of_quotes)
@@ -21,17 +21,28 @@ week_of_now = now.weekday()
 
 with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
     connection.starttls()
-    connection.login(user=my_email, password=password)
-    if day_of_week == week_of_now:
+    connection.login(user=MY_EMAIL, password=MY_PASSWORD)
+    if week_of_now == 0:
         connection.sendmail(
-            from_addr=my_email,
-            to_addrs="dannyduyanhnguyen@outlook.com, dda.nguyen1@gmail.com",
-            msg=f"Subject:Quotes of today!\n\n{quote_of_today}\n\nKind regards,\n\n"
+            from_addr=MY_EMAIL,
+            to_addrs="dannyduyanhnguyen@outlook.com, dda.nguyen1@gmail.com, maianh.maryann@gmail.com",
+            msg=f"Subject:The quote of Monday!\n\n{quote_of_today}\n\nKind regards,\n\n"
                 "\n\nDanny Duy-Anh Nguyen"
         )
         print("Mail sended")
     else:
-        print(f"The quote of today: {quote_of_today}")
+        print(f"No mail will be send!\nThe quote of today: {quote_of_today}")
+
+
+# ------------------- Learning about email SMTP and datetime --------------------------
+# import smtplib
+# import datetime as dt
+
+# my_email = "dda.nguyen1@gmail.com"
+# password = "skscuffqchkjkhxb"
+
+
+    # connection.starttls()
     # connection.login(user=my_email, password=password)
     # connection.sendmail(
     #     from_addr=my_email,
@@ -48,9 +59,6 @@ month = now.month
 day = now.day
 
 print(week_of_now)
-
-
-
 
 # my_birthday = dt.datetime(year=2004, month=11, day=4, hour=10, minute=3)
 # print(my_birthday)
