@@ -31,6 +31,12 @@ with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
         )
         print("Mail sended")
     else:
+        connection.sendmail(
+            from_addr=MY_EMAIL,
+            to_addrs="dannyduyanhnguyen@outlook.com, dda.nguyen1@gmail.com, maianh.maryann@gmail.com",
+            msg=f"Subject:The quote of today (expect monday)!\n\n{quote_of_today}\n\nKind regards,\n\n"
+                "\n\nDanny Duy-Anh Nguyen"
+        )
         print(f"No mail will be send!\nThe quote of today: {quote_of_today}")
 
 
